@@ -1034,7 +1034,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="291" parent="1" name="employee_db3">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-09-21.11:38:26</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-09-21.13:00:05</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="292" parent="1" name="information_schema">
@@ -1106,22 +1106,26 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="310" parent="305" name="PRIMARY">
+    <column id="310" parent="305" name="department_code">
+      <Position>5</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="311" parent="305" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="311" parent="305" name="UK_fopic1oh5oln2khj8eat6ino0">
+    <index id="312" parent="305" name="UK_fopic1oh5oln2khj8eat6ino0">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="312" parent="305" name="PRIMARY">
+    <key id="313" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="313" parent="305" name="UK_fopic1oh5oln2khj8eat6ino0">
+    <key id="314" parent="305" name="UK_fopic1oh5oln2khj8eat6ino0">
       <UnderlyingIndexName>UK_fopic1oh5oln2khj8eat6ino0</UnderlyingIndexName>
     </key>
   </database-model>

@@ -1,5 +1,6 @@
 package com.pos.employee_service.controller;
 
+import com.pos.employee_service.dto.APIResponseDto;
 import com.pos.employee_service.dto.EmployeeDto;
 import com.pos.employee_service.entity.Employee;
 import com.pos.employee_service.service.EmployeeService;
@@ -22,11 +23,11 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}")
-    ResponseEntity<EmployeeDto> getAllEmployees(@PathVariable Long id) {
+    ResponseEntity<APIResponseDto> getAllEmployees(@PathVariable Long id) {
 
-        EmployeeDto employeeDto = employeeService.getEmployeeById(id);
+        APIResponseDto apiResponseDto = employeeService.getEmployeeById(id);
 
-        return new ResponseEntity<> (employeeDto,HttpStatus.OK);
+        return new ResponseEntity<> (apiResponseDto,HttpStatus.OK);
 
     }
 
