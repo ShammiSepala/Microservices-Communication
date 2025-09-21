@@ -16,11 +16,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employeeDto.getId(),
                 employeeDto.getFirstName(),
                 employeeDto.getLastName(),
-                employeeDto.getEmail()
+                employeeDto.getEmail(),
+                employeeDto.getDepartmentCode()
         );
       Employee savedEmployee=  employeeRepository.save(employee);
 
-      return new EmployeeDto(savedEmployee.getId(), savedEmployee.getFirstName(), savedEmployee.getLastName(), savedEmployee.getEmail());
+      return new EmployeeDto(savedEmployee.getId(), savedEmployee.getFirstName(), savedEmployee.getLastName(), savedEmployee.getEmail(),savedEmployee.getDepartmentCode());
 
     }
 
@@ -28,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id).orElse(null);
         assert employee != null;
-        return new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmail());
+        return new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmail(),employee.getDepartmentCode());
 
     }
 }
