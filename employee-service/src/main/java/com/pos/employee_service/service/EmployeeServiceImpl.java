@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
+
 
 @Service
 @AllArgsConstructor
@@ -17,7 +17,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     //For RestTemplate Internal communication
 //private RestTemplate restTemplate;
-    private WebClient webClient;
+    //For Web Client Internal Communication
+ //   private WebClient webClient;
+    private APIClient apiClient;
 
 
 
@@ -49,16 +51,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 //        getForEntity("http://localhost:8081/api/v1/departments/"+employee.getDepartmentCode(),DepartmentDto.class);
 //        DepartmentDto departmentDto= responseEntity.getBody();
 
-      DepartmentDto departmentDto=  webClient.get()
-                .uri("http://localhost:8081/api/v1/departments/"+employee.getDepartmentCode())
-                .retrieve()
-                .bodyToMono(DepartmentDto.class)
-                .block();//using for synchronized calls
+        //Internal Microservices communication with WebClient
+//      DepartmentDto departmentDto=  webClient.get()
+//                .uri("http://localhost:8081/api/v1/departments/"+employee.getDepartmentCode())
+//                .retrieve()
+//                .bodyToMono(DepartmentDto.class)
+//                .block();//using for synchronized calls
 
-
-
-
-
+        //Internal Communication with Spring  Cloud Open Feign
+        DepartmentDto departmentDto= apiClient.getDepartment(employee.getDepartmentCode());
         return new APIResponseDto(employeeDto,departmentDto);
 
     }
