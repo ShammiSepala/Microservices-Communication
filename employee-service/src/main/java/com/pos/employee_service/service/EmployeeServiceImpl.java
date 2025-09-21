@@ -9,12 +9,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
-private RestTemplate restTemplate;
+    //For RestTemplate Internal communication
+//private RestTemplate restTemplate;
+    private WebClient webClient;
 
 
 
@@ -39,10 +42,20 @@ private RestTemplate restTemplate;
 
         EmployeeDto employeeDto= new EmployeeDto(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getEmail(), employee.getDepartmentCode());
 
-        assert employee != null;
+        // For RestTemplate Internal communication
+//        assert employee != null;
+//
+//        ResponseEntity<DepartmentDto> responseEntity =restTemplate.
+//        getForEntity("http://localhost:8081/api/v1/departments/"+employee.getDepartmentCode(),DepartmentDto.class);
+//        DepartmentDto departmentDto= responseEntity.getBody();
 
-        ResponseEntity<DepartmentDto> responseEntity =restTemplate.getForEntity("http://localhost:8081/api/v1/departments/"+employee.getDepartmentCode(),DepartmentDto.class);
-        DepartmentDto departmentDto= responseEntity.getBody();
+      DepartmentDto departmentDto=  webClient.get()
+                .uri("http://localhost:8081/api/v1/departments/"+employee.getDepartmentCode())
+                .retrieve()
+                .bodyToMono(DepartmentDto.class)
+                .block();//using for synchronized calls
+
+
 
 
 
